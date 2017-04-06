@@ -94,15 +94,15 @@ Game.prototype.shiftNonZeroesRight = function(array){
 
 Game.prototype.addTogetherSameNumbers = function(array, rightOrLeft){
   var length = array.length;
+  if (rightOrLeft === "left") {
+    array.reverse();
+  }
   for (var i = length - 1; i > -1; i--) {
     if (array[i] === array[i-1]) {
       array[i] = array[i] + array[i-1];
       array[i-1] = 0;
       i--;
     }
-  }
-  if (rightOrLeft === "left") {
-    array.reverse();
   }
   return array
 }
