@@ -6,8 +6,8 @@ var Game = function(){
     [0, 0, 0, 0]
   ];
 
-  var position1 = randomBoardPosition(); 
-  var position2 = randomBoardPosition();
+  var position1 = this.randomBoardPosition(); 
+  var position2 = this.randomBoardPosition();
   while (position1.row === position2.row && position1.column === position2.column) {
     position2 = randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2. 
   }
@@ -34,4 +34,13 @@ Game.prototype.generateTwoOrFour = function() {
     } else {
       return 2;
     }
+  }
+
+  // this function just makes it easy to visualize the board in the console. It will print the board in the in the proper rows and columns.
+  Game.prototype.toString = function(){
+    var board_string = "\n";
+    for (var i = 0; i < this.board.length; i++) {
+      board_string = board_string.concat(this.board[i].toString()) + "\n"
+    }
+    return board_string;
   }
