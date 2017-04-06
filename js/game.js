@@ -47,13 +47,24 @@ Game.prototype.generateTwoOrFour = function() {
 
 
 // Shift board to the right or left -------------------------------------------------------
-Game.prototype.shiftEntireBoard = function(rightOrLeft) {
+Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
+  if (upOrDown === "up"){
+    this.transpose();
+    this.shiftEntireBoardRightOrLeft("left");
+    this.transpose();
+  } else {
+    this.transpose();
+    this.shiftEntireBoardRightOrLeft("right")
+    this.transpose();
+  }
+}
+
+Game.prototype.shiftEntireBoardRightOrLeft = function(rightOrLeft) {
   var length = this.board.length;
   for (var n = 0; n < length; n++) {
     this.board[n] = this.shiftSingleArray(this.board[n], rightOrLeft);
   }
   this.addTwoOrFourToBoard();
-  return this.toString()
 }
 
 Game.prototype.shiftSingleArray = function(array, rightOrLeft) {
