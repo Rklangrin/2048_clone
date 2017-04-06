@@ -9,7 +9,7 @@ var Game = function(){
   var position1 = this.randomBoardPosition(); 
   var position2 = this.randomBoardPosition();
   while (position1.row === position2.row && position1.column === position2.column) {
-    position2 = randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2. 
+    position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2. 
   }
 
   this.board[position1.row][position1.column] = this.generateTwoOrFour();
@@ -40,13 +40,13 @@ Game.prototype.generateTwoOrFour = function() {
   Game.prototype.toString = function(){
     var board_string = "\n";
     for (var i = 0; i < this.board.length; i++) {
-      board_string = board_string.concat(this.board[i].toString()) + "\n"
+      board_string = board_string.concat(this.board[i].toString()) + "\n";
     }
     return board_string;
   }
 
 
-// Shift board to the right or left
+// Shift board to the right or left -------------------------------------------------------
 Game.prototype.shiftEntireBoard = function(rightOrLeft) {
   var length = this.board.length;
   for (var n = 0; n < length; n++) {
@@ -99,22 +99,37 @@ Game.prototype.addTogetherSameNumbers = function(array, rightOrLeft){
 
 // ADD TWO OR FOUR TO BOARD ------------------------------------------------------------
 Game.prototype.addTwoOrFourToBoard = function() {
-  locationsToAddNumber = this.findEmptySpaces();
-  randomizedLocation = Math.floor(Math.random() * locationsToAddNumber.length);
-  row = locationsToAddNumber[randomizedLocation].row;
-  column = locationsToAddNumber[randomizedLocation].column;
+  var locationsToAddNumber = this.findEmptySpaces();
+  var randomizedLocation = Math.floor(Math.random() * locationsToAddNumber.length);
+  var row = locationsToAddNumber[randomizedLocation].row;
+  var column = locationsToAddNumber[randomizedLocation].column;
   this.board[row][column] = this.generateTwoOrFour();
 }
 
 Game.prototype.findEmptySpaces = function() {
   var locations = [];
-  var length = game.board.length
+  var length = game.board.length;
   for (var i = 0; i < length; i++) {
     for (var n = 0; n < length; n++) {
       if (game.board[i][n] === 0) {
-        locations.push({row: i, column: n})
+        locations.push({row: i, column: n});
       }
     }
   }
   return locations
+}
+
+
+// Transpose array ---------------------------------------------------------------------
+Game.prototype.transpose = function(){
+  var transposedArray = [];
+  var length = this.board.length;
+  for (var col = 0; col < length; col++){
+    var arr = [];
+    for (var row = 0; row < length; row++){
+      arr.push(this.board[row][col]);
+    }
+    transposedArray.push(arr);
+  }
+  this.board = transposedArray;
 }
