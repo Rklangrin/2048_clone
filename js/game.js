@@ -36,17 +36,17 @@ Game.prototype.generateTwoOrFour = function() {
     }
   }
 
-  // this function just makes it easy to visualize the board in the console. It will print the board in the in the proper rows and columns.
-  Game.prototype.toString = function(){
-    var board_string = "\n";
-    for (var i = 0; i < this.board.length; i++) {
-      board_string = board_string.concat(this.board[i].toString()) + "\n";
-    }
-    return board_string;
+// this function just makes it easy to visualize the board in the console. It will print the board in the in the proper rows and columns.
+Game.prototype.toString = function(){
+  var board_string = "\n";
+  for (var i = 0; i < this.board.length; i++) {
+    board_string = board_string.concat(this.board[i].toString()) + "\n";
   }
+  return board_string;
+}
 
 
-// Shift board to the right or left -------------------------------------------------------
+// Shift board up, down, left, right -------------------------------------------------------
 Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
   if (upOrDown === "up"){
     this.transpose();
