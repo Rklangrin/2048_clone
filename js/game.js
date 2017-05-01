@@ -12,9 +12,12 @@ var Game = function(){
     position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2 and position 2 will change until it is distinct from position 1
   }
 
+
+  // A two or four will now be placed in each of the randomly selected positions in order to start the game. 
   this.board[position1.row][position1.column] = this.generateTwoOrFour();
   this.board[position2.row][position2.column] = this.generateTwoOrFour();
-  // A two or four will now be placed in each of the randomly selected positions in order to start the game. 
+
+
 }
 
 
@@ -61,10 +64,20 @@ Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
 
 Game.prototype.shiftEntireBoardRightOrLeft = function(rightOrLeft) {
   var length = this.board.length;
+  var changed = false;
+  
   for (var n = 0; n < length; n++) {
+    var oldArray = this.board[n].toString();
     this.board[n] = this.shiftSingleArray(this.board[n], rightOrLeft);
+
+    if (oldArray != this.board[n].toString()) {
+      changed = true;
+    }
   }
-  this.addTwoOrFourToBoard();
+
+  if (changed) {
+    this.addTwoOrFourToBoard();   
+  }
 }
 
 Game.prototype.shiftSingleArray = function(array, rightOrLeft) {
