@@ -9,7 +9,7 @@ var Game = function(){
   var position1 = this.randomBoardPosition(); 
   var position2 = this.randomBoardPosition();
   while (position1.row === position2.row && position1.column === position2.column) {
-    position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2. 
+    position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2 and position 2 will change until it is distinct from position 1
   }
 
   this.board[position1.row][position1.column] = this.generateTwoOrFour();
@@ -36,7 +36,7 @@ Game.prototype.generateTwoOrFour = function() {
     }
   }
 
-// this function just makes it easy to visualize the board in the console. It will print the board in the in the proper rows and columns.
+// this function just makes it easy to visualize the board in the console. It will print the board in the the proper rows and columns.
 Game.prototype.toString = function(){
   var board_string = "\n";
   for (var i = 0; i < this.board.length; i++) {
@@ -132,6 +132,8 @@ Game.prototype.findEmptySpaces = function() {
 
 
 // Transpose array ---------------------------------------------------------------------
+
+// This function transposes the board so that the BOTTOM LEFT of the board becomes the TOP RIGHT. The top left and bottom right corners stay the same. 
 Game.prototype.transpose = function(){
   var transposedArray = [];
   var length = this.board.length;
