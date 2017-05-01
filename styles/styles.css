@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box; }
+
+h1 {
+  text-align: center;
+  border-bottom: 1px solid black; }
+
+#counter-box {
+  display: block;
+  background-color: lightgray;
+  margin: auto;
+  width: 10%; }
+
+#counter-box p {
+  background-color: lightblue;
+  margin: auto;
+  text-align: center;
+  border-bottom: 1px dotted black; }
+
+#counter {
+  margin: auto;
+  text-align: center;
+  padding: 20px; }
+
+td {
+  background-color: lightblue;
+  padding: 10px; }
+
+table {
+  margin: auto;
+  margin-top: 50px; }
+
+/*# sourceMappingURL=styles.css.map */
