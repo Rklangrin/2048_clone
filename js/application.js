@@ -9,7 +9,12 @@ $(document).ready(function(){
     var length = $tableRowsArr.length
     for(var row = 0; row < length; row++){
       for(var col = 0; col < length; col++){
-        $($($tableRowsArr[row]).children()[col]).html(game.board[row][col]);
+        if (game.board[row][col] != 0){
+          $($($tableRowsArr[row]).children()[col]).html(game.board[row][col]);
+        } else {
+          $($($tableRowsArr[row]).children()[col]).html("");
+        }
+
       }
     }
   };
