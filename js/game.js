@@ -53,6 +53,7 @@ Game.prototype.toString = function(){
 Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
   if (upOrDown === "up"){
     this.transpose();
+    // this transpose method shifts the board along an axis that goes from the top left of the board to the bottom right. So, BOTTOM LEFT corner spot becomes the TOP RIGHT corner spot
     this.shiftEntireBoardRightOrLeft("left");
     this.transpose();
   } else {
