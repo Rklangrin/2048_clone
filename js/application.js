@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
   game = new Game();
+  var $counter = $("#counter");
+  var $tableRowsArr = $("#2048-table tr");
 
   var render_board = function(){
-    var $tableRowsArr = $("#2048-table tr");
+    $counter.html(game.counter);
     var length = $tableRowsArr.length
     for(var row = 0; row < length; row++){
       for(var col = 0; col < length; col++){

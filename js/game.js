@@ -17,6 +17,8 @@ var Game = function(){
   this.board[position1.row][position1.column] = this.generateTwoOrFour();
   this.board[position2.row][position2.column] = this.generateTwoOrFour();
 
+  // Counter that will keep track of how many moves the player has made
+  this.counter = 0;
 
 }
 
@@ -53,6 +55,7 @@ Game.prototype.toString = function(){
 Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
   if (upOrDown === "up"){
     this.transpose();
+    // this transpose method shifts the board along an axis that goes from the top left of the board to the bottom right. So, BOTTOM LEFT corner spot becomes the TOP RIGHT corner spot
     this.shiftEntireBoardRightOrLeft("left");
     this.transpose();
   } else {
@@ -77,6 +80,7 @@ Game.prototype.shiftEntireBoardRightOrLeft = function(rightOrLeft) {
 
   if (changed) {
     this.addTwoOrFourToBoard();   
+    this.counter++;
   }
 }
 
