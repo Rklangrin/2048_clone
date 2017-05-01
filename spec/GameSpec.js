@@ -74,5 +74,30 @@ describe("Game", function() {
     });
   });
 
+  describe("shift entire Board to a side where the board DOES and DOESN'T change after the shift", function(){
+
+    it("should NOT add a new number to the board", function(){
+      game.board = [[0, 0, 0, 0],
+                    [0, 0, 0, 2],
+                    [0, 0, 0, 2],
+                    [0, 0, 0, 2]];
+      var oldBoard = game.toString();
+      game.shiftEntireBoardRightOrLeft("right");
+      var newBoard = game.toString();
+      expect(oldBoard).toEqual(newBoard);
+    });
+
+    it("SHOULD add a new number to the board", function(){
+      game.board = [[0, 0, 0, 0],
+                    [0, 0, 2, 0],
+                    [0, 0, 0, 2],
+                    [0, 0, 0, 2]];
+      var oldBoard = game.toString();
+      game.shiftEntireBoardRightOrLeft("right");
+      var newBoard = game.toString();
+      expect(oldBoard).not.toEqual(newBoard);
+    });
+  });
+
   
 });

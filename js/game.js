@@ -9,12 +9,15 @@ var Game = function(){
   var position1 = this.randomBoardPosition(); 
   var position2 = this.randomBoardPosition();
   while (position1.row === position2.row && position1.column === position2.column) {
-    position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2. 
+    position2 = this.randomBoardPosition(); // if the positions are pointing to the same spot, this will change the location of position 2 and position 2 will change until it is distinct from position 1
   }
 
+
+  // A two or four will now be placed in each of the randomly selected positions in order to start the game. 
   this.board[position1.row][position1.column] = this.generateTwoOrFour();
   this.board[position2.row][position2.column] = this.generateTwoOrFour();
-  // A two or four will now be placed in each of the randomly selected positions in order to start the game. 
+
+
 }
 
 
@@ -36,7 +39,7 @@ Game.prototype.generateTwoOrFour = function() {
     }
   }
 
-// this function just makes it easy to visualize the board in the console. It will print the board in the in the proper rows and columns.
+// this function just makes it easy to visualize the board in the console. It will print the board in the the proper rows and columns.
 Game.prototype.toString = function(){
   var board_string = "\n";
   for (var i = 0; i < this.board.length; i++) {
@@ -61,10 +64,20 @@ Game.prototype.shiftEntireBoardUpOrDown = function(upOrDown){
 
 Game.prototype.shiftEntireBoardRightOrLeft = function(rightOrLeft) {
   var length = this.board.length;
+  var changed = false;
+  
   for (var n = 0; n < length; n++) {
+    var oldArray = this.board[n].toString();
     this.board[n] = this.shiftSingleArray(this.board[n], rightOrLeft);
+
+    if (oldArray != this.board[n].toString()) {
+      changed = true;
+    }
   }
-  this.addTwoOrFourToBoard();
+
+  if (changed) {
+    this.addTwoOrFourToBoard();   
+  }
 }
 
 Game.prototype.shiftSingleArray = function(array, rightOrLeft) {
@@ -132,6 +145,8 @@ Game.prototype.findEmptySpaces = function() {
 
 
 // Transpose array ---------------------------------------------------------------------
+
+// This function transposes the board so that the BOTTOM LEFT of the board becomes the TOP RIGHT. The top left and bottom right corners stay the same. 
 Game.prototype.transpose = function(){
   var transposedArray = [];
   var length = this.board.length;
