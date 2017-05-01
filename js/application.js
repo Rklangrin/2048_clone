@@ -14,7 +14,6 @@ $(document).ready(function(){
         } else {
           $($($tableRowsArr[row]).children()[col]).html("");
         }
-
       }
     }
   };
